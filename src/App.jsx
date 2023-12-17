@@ -1,42 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Header from "./Components/Header.jsx";
 import Anime from "./Components/Anime.jsx";
 
 const App = () => {
   const [anime, setAnime] = useState([]);
-
-  useEffect(() => {
-    const fetchAnime = async () => {
-      try {
-        const response = await fetch(
-          "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=0",
-          {
-            headers: {
-              Accept: "application/vnd.api+json",
-              "Content-Type": "application/vnd.api+json",
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          setAnime(data.data);
-        } else {
-          console.error("Error fetching anime:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error fetching anime data:", error);
-      }
-    };
-
-    fetchAnime();
-  }, []);
+  const [anime2, setAnime2] = useState([]);
+  const [anime3, setAnime3] = useState([]);
+  const [anime4, setAnime4] = useState([]);
+  const [anime5, setAnime5] = useState([]);
+  const [anime6, setAnime6] = useState([]);
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <Header />
-      <Anime anime={anime} />
+      <div className="flex-1 overflow-hidden">
+        <Anime
+          anime={anime}
+          setAnime={setAnime}
+          anime2={anime2}
+          setAnime2={setAnime2}
+          anime3={anime3}
+          setAnime3={setAnime3}
+          anime4={anime4}
+          setAnime4={setAnime4}
+          anime5={anime5}
+          setAnime5={setAnime5}
+          anime6={anime6}
+          setAnime6={setAnime6}
+        />
+      </div>
     </div>
   );
 };

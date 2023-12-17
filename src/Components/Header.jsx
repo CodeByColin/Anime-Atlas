@@ -1,7 +1,7 @@
 const Header = () => {
   return (
-    <div className="fixed top-0 left-0 h-screen w-60 bg-gray-800 text-white flex flex-col items-center py-10">
-      <h1 className="text-2xl font-bold mb-8">Anime Atlas</h1>
+    <div className="fixed top-0 left-0 h-screen w-60 bg-gray-800 text-white flex-none flex-col items-center py-10">
+      <h1 className="text-center text-2xl font-bold mb-8">Anime Atlas</h1>
 
       <div className="flex flex-col items-stretch w-full px-4 space-y-4">
         <input
