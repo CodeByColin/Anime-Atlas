@@ -4,11 +4,6 @@ const Header = () => {
       <h1 className="text-center text-2xl font-bold mb-8">Anime Atlas</h1>
 
       <div className="flex flex-col items-stretch w-full px-4 space-y-4">
-        <input
-          type="text"
-          placeholder="Find an Anime..."
-          className="px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
-        />
         <div className="flex justify-between space-x-2">
           <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg flex-1">
             Sign Up
@@ -17,7 +12,11 @@ const Header = () => {
             Login
           </button>
         </div>
-
+        <input
+          type="text"
+          placeholder="Find an Anime..."
+          className="px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+        />
         <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">
           Favorites
         </button>
