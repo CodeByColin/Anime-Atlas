@@ -7,26 +7,24 @@ const AnimeDetails = ({ anime, hideDetails }) => {
   const youtube = anime.attributes.youtubeVideoId;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="min-h-screen px-4 text-center">
-        <div className="relative p-5 inline-block w-full max-w-4xl mt-18 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+    <div className="fixed inset-0 z-50 overflow-y-auto ">
+      <div className="min-h-screen px-4 text-center ">
+        <div className="relative p-5 inline-block w-full max-w-4xl mt-18 overflow-hidden text-left align-middle transition-all transform bg-dark shadow-xl rounded-2xl">
           <div
             className="h-64 bg-cover bg-center rounded-t-2xl"
             style={{ backgroundImage: `url(${coverImage})` }}
           ></div>
           <div className="mt-4">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg  font-medium leading-6 text-neon text-decoration-line: underline">
               {anime.attributes.canonicalTitle}
             </h3>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">
-                {anime.attributes.synopsis}
-              </p>
+              <p className="text-sm text-neon">{anime.attributes.synopsis}</p>
             </div>
           </div>
 
           <div className="mt-4">
-            <div className="text-gray-700">
+            <div className="text-neon">
               <p>Start Date: {anime.attributes.startDate}</p>
               <p>End Date: {anime.attributes.endDate}</p>
               <p>Rating: {anime.attributes.averageRating}</p>
