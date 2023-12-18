@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Header = ({ onShowSignup, onShowLogin }) => {
+const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
   return (
     <header className="w-full bg-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,7 +27,10 @@ const Header = ({ onShowSignup, onShowLogin }) => {
               placeholder="Find an Anime..."
               className="input input-bordered input-dark w-full max-w-xs"
             />
-            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">
+            <button
+              className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary"
+              onClick={onToggleFavorites}
+            >
               Favorites
             </button>
             <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">

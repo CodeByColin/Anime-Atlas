@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./Components/Header.jsx";
 import Anime from "./Components/Anime.jsx";
+import Favorites from "./Components/Favorites.jsx";
 import AnimeDetails from "./Components/AnimeDetails.jsx";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
@@ -12,6 +13,7 @@ const App = () => {
   const [anime4, setAnime4] = useState([]);
   const [anime5, setAnime5] = useState([]);
   const [anime6, setAnime6] = useState([]);
+  const [showFavorites, setShowFavorites] = useState(false);
   const [selectedAnime, setSelectedAnime] = useState(null);
   const [showSignup, setShowSignup] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -32,13 +34,19 @@ const App = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
       {!selectedAnime && (
-        <Header onShowSignup={handleShowSignup} onShowLogin={handleShowLogin} />
+        <Header
+          onShowSignup={handleShowSignup}
+          onShowLogin={handleShowLogin}
+          onToggleFavorites={() => setShowFavorites((prev) => !prev)}
+        />
       )}
       {showSignup && <Signup onClose={handleCloseSignup} />}
       {showLogin && <Login onClose={handleCloseLogin} />}
       <div className="flex-1 overflow-hidden">
         {selectedAnime ? (
           <AnimeDetails anime={selectedAnime} hideDetails={hideDetails} />
+        ) : showFavorites ? (
+          <Favorites />
         ) : (
           <Anime
             anime={anime}
