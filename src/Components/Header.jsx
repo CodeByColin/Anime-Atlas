@@ -1,30 +1,34 @@
 const Header = () => {
   return (
-    <div className="fixed top-0 left-0 h-screen w-60 bg-dark text-white flex flex-col items-center py-10">
-      <h1 className="text-4xl font-bold text-neon mb-8">Anime Atlas</h1>
-
-      <div className="flex flex-col items-stretch w-full px-4 space-y-4">
-        <div className="flex justify-between space-x-2">
-          <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg flex-1">
-            Sign Up
-          </button>
-          <button className="btn btn-neon btn-xs sm:btn-sm md:btn-md lg:btn-lg flex-1">
-            Login
-          </button>
+    <header className="w-full bg-dark text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-3">
+          <div className="flex items-center space-x-4">
+            <img src="/logo.png" alt="Anime Atlas Logo" className="h-12 w-12" />
+            <h1 className="text-3xl font-bold text-neon">Anime Atlas</h1>
+          </div>
+          <div className="flex items-center space-x-4">
+            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">
+              Sign Up
+            </button>
+            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">
+              Login
+            </button>
+            <input
+              type="search"
+              placeholder="Find an Anime..."
+              className="input input-bordered input-dark w-full max-w-xs"
+            />
+            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">
+              Favorites
+            </button>
+            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">
+              Categories
+            </button>
+          </div>
         </div>
-        <input
-          type="text"
-          placeholder="Find an Anime..."
-          className="px-3 py-2 bg-gray-700 text-neon rounded focus:outline-none focus:ring-2 focus:ring-neon-500"
-        />
-        <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">
-          Favorites
-        </button>
-        <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">
-          Categories
-        </button>
       </div>
-    </div>
+    </header>
   );
 };
 

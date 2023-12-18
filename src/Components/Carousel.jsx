@@ -1,10 +1,10 @@
 const Carousel = ({ anime, title, showDetails }) => {
   return (
-    <div className="md:ml-60 max-w-full">
+    <div>
       <h2 className="text-center text-xl font-semibold text-white mb-4">
         {title}
       </h2>
-      <div className="carousel overflow-x-auto">
+      <div className="carousel rounded-box overflow-x-auto">
         {anime.map((ani) => {
           console.log(ani);
           const imageUrl = ani.attributes.posterImage.tiny;
@@ -15,7 +15,7 @@ const Carousel = ({ anime, title, showDetails }) => {
               className="carousel-item inline-block max-w-xs mx-2 my-2"
               onClick={() => showDetails(ani)}
             >
-              <div className="flex flex-col items-center space-y-2">
+              <div className="flex flex-col items-center space-y-2 cursor-pointer">
                 <img
                   src={imageUrl}
                   alt={`Cover of ${title}`}

@@ -21,7 +21,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-800">
+    <div className="flex flex-col min-h-screen bg-gray-800">
       {!selectedAnime && <Header />}
       <div className="flex-1 overflow-hidden">
         {selectedAnime ? (
