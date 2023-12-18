@@ -1,4 +1,6 @@
-const Header = () => {
+import { useState } from "react";
+
+const Header = ({ onShowSignup, onShowLogin }) => {
   return (
     <header className="w-full bg-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,10 +10,16 @@ const Header = () => {
             <h1 className="text-3xl font-bold text-neon">Anime Atlas</h1>
           </div>
           <div className="flex items-center space-x-4">
-            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">
+            <button
+              className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary"
+              onClick={onShowSignup}
+            >
               Sign Up
             </button>
-            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary">
+            <button
+              className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary"
+              onClick={onShowLogin}
+            >
               Login
             </button>
             <input

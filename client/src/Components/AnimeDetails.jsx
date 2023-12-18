@@ -6,6 +6,34 @@ const AnimeDetails = ({ anime, hideDetails }) => {
     : anime.attributes.posterImage.original;
   const youtube = anime.attributes.youtubeVideoId;
 
+  const handleAddToFavorites = async () => {
+    const userId = localStorage.getItem("userId");
+    const animeId = anime.id;
+
+    if (!userId) {
+      console.error("User not logged in");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/favorites", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, animeId }),
+      });
+
+      if (response.ok) {
+        console.log("Added to favorites successfully");
+      } else {
+        console.error("Failed to add to favorites");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto ">
       <div className="min-h-screen px-4 text-center ">
@@ -46,10 +74,17 @@ const AnimeDetails = ({ anime, hideDetails }) => {
           <div className="mt-4">
             <button
               type="button"
-              className="inline-flex align-center justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+              className="inline-flex bg-neon align-center justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
               onClick={hideDetails}
             >
               Close
+            </button>
+            <button
+              type="button"
+              className="inline-flex bg-neon align-center ml-20 justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+              onClick={handleAddToFavorites}
+            >
+              Add To Favorites
             </button>
           </div>
         </div>
