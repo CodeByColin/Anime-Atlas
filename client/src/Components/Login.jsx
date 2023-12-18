@@ -19,15 +19,13 @@ const Login = ({ onClose }) => {
         const data = await response.json();
         console.log("Login successful", data);
         localStorage.setItem("userId", data.user.id);
-        // Perform additional actions on successful login, such as redirecting the user
-        onClose(); // Close the form
+
+        onClose();
       } else {
         console.error("Login failed");
-        // Handle login failure
       }
     } catch (error) {
       console.error("Error:", error);
-      // Handle server error
     }
   };
 
