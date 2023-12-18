@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Components/Header.jsx";
 import Anime from "./Components/Anime.jsx";
 import Favorites from "./Components/Favorites.jsx";
@@ -17,6 +17,7 @@ const App = () => {
   const [selectedAnime, setSelectedAnime] = useState(null);
   const [showSignup, setShowSignup] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleShowSignup = () => setShowSignup(true);
   const handleShowLogin = () => setShowLogin(true);
@@ -30,6 +31,27 @@ const App = () => {
   const hideDetails = () => {
     setSelectedAnime(null);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="flex items-center justify-center min-h-screen">
+          <span className="loading loading-infinity loading-lg"></span>
+          <span className="loading loading-infinity loading-lg"></span>
+          <span className="loading loading-infinity loading-lg"></span>
+          <span className="loading loading-infinity loading-lg"></span>
+        </div>
+      </>
+    );
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
