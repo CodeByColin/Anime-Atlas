@@ -13,7 +13,7 @@ const Anime = (props) => {
 
       if (response.ok) {
         const data = await response.json();
-        setter((prevData) => [...prevData, ...data.data]);
+        setter(data.data);
       } else {
         console.error("Error fetching anime:", response.statusText);
       }
@@ -22,85 +22,72 @@ const Anime = (props) => {
     }
   };
 
-  // Fetch data for "Highest Rated" category
   useEffect(() => {
-    props.setAnime([]);
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=0",
-      props.setAnime
-    );
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=20",
-      props.setAnime
-    );
+    const fetchData = async () => {
+      await fetchAnime(
+        "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=0",
+        props.setAnime
+      );
+      await fetchAnime(
+        "https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=20",
+        (newData) => props.setAnime((prevData) => [...prevData, ...newData])
+      );
+    };
+
+    fetchData();
   }, [props.setAnime]);
 
-  // Fetch data for "Most Popular" category
   useEffect(() => {
-    props.setAnime2([]);
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=20&page[offset]=0",
-      props.setAnime2
-    );
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=20&page[offset]=20",
-      props.setAnime2
-    );
+    const fetchData = async () => {
+      await fetchAnime(
+        "https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=20&page[offset]=0",
+        props.setAnime2
+      );
+      await fetchAnime(
+        "https://kitsu.io/api/edge/anime?sort=popularityRank&page[limit]=20&page[offset]=20",
+        (newData) => props.setAnime2((prevData) => [...prevData, ...newData])
+      );
+    };
+
+    fetchData();
   }, [props.setAnime2]);
 
-  // Fetch data for "Fall 2023" category
   useEffect(() => {
-    props.setAnime3([]);
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?filter[season]=fall&filter[seasonYear]=2023&sort=popularityRank&page[limit]=20&page[offset]=0",
-      props.setAnime3
-    );
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?filter[season]=fall&filter[seasonYear]=2023&sort=popularityRank&page[limit]=20&page[offset]=20",
-      props.setAnime3
-    );
+    const fetchData = async () => {
+      await fetchAnime(
+        "https://kitsu.io/api/edge/anime?filter[season]=fall&filter[seasonYear]=2023&sort=popularityRank&page[limit]=20",
+        props.setAnime3
+      );
+      await fetchAnime(
+        "https://kitsu.io/api/edge/anime?filter[season]=fall&filter[seasonYear]=2023&sort=popularityRank&page[limit]=20&page[offset]=20",
+        (newData) => props.setAnime3((prevData) => [...prevData, ...newData])
+      );
+    };
+
+    fetchData();
   }, [props.setAnime3]);
 
-  // Fetch data for "Winter 2023" category
   useEffect(() => {
-    props.setAnime4([]);
     fetchAnime(
-      "https://kitsu.io/api/edge/anime?filter[season]=winter&filter[seasonYear]=2023&sort=popularityRank&page[limit]=20&page[offset]=0",
-      props.setAnime4
-    );
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?filter[season]=winter&filter[seasonYear]=2023&sort=popularityRank&page[limit]=20&page[offset]=20",
+      "https://kitsu.io/api/edge/anime?filter[season]=winter&filter[seasonYear]=2023&sort=popularityRank&page[limit]=20",
       props.setAnime4
     );
   }, [props.setAnime4]);
 
-  // Fetch data for "Popular Movies" category
   useEffect(() => {
-    props.setAnime5([]);
     fetchAnime(
-      "https://kitsu.io/api/edge/anime?filter[subtype]=movie&sort=popularityRank&page[limit]=20&page[offset]=0",
-      props.setAnime5
-    );
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?filter[subtype]=movie&sort=popularityRank&page[limit]=20&page[offset]=20",
+      "https://kitsu.io/api/edge/anime?filter[subtype]=movie&sort=popularityRank&page[limit]=20",
       props.setAnime5
     );
   }, [props.setAnime5]);
 
-  // Fetch data for "Recently Added" category
   useEffect(() => {
-    props.setAnime6([]);
     fetchAnime(
-      "https://kitsu.io/api/edge/anime?sort=-createdAt&page[limit]=20&page[offset]=0",
-      props.setAnime6
-    );
-    fetchAnime(
-      "https://kitsu.io/api/edge/anime?sort=-createdAt&page[limit]=20&page[offset]=20",
+      "https://kitsu.io/api/edge/anime?sort=-createdAt&page[limit]=20",
       props.setAnime6
     );
   }, [props.setAnime6]);
 
-  // Render the carousels for each category
   return (
     <div className="flex flex-col">
       <Carousel
