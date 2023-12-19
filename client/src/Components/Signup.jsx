@@ -3,26 +3,24 @@ import { useState } from "react";
 const Signup = ({ onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false); // New state for showing alert
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://anime-api-s3cz.onrender.com/api/users/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        }
-      );
+      const response = await fetch("http://localhost:3000/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
       if (response.ok) {
         const data = await response.json();
         console.log("Signup successful", data);
-        onClose();
+        setShowAlert(true);
       } else {
         console.error("Signup failed");
       }
@@ -31,8 +29,23 @@ const Signup = ({ onClose }) => {
     }
   };
 
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+    onClose();
+  };
+
   return (
     <>
+      {showAlert && (
+        <div className="fixed inset-0 flex items-center justify-center z-30">
+          <div className="bg-white p-4 rounded shadow-md">
+            <p>Signup successful!</p>
+            <button onClick={handleCloseAlert} className="btn text-neon mt-2">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div
         className="fixed inset-0 bg-black bg-opacity-50 z-10"
         onClick={onClose}

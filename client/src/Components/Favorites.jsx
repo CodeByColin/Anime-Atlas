@@ -9,7 +9,7 @@ const Favorites = () => {
     const fetchFavorites = async () => {
       const userId = localStorage.getItem("userId");
       if (!userId) {
-        setError("User ID not found.");
+        setError("Please Log in to add and remove favorites");
         return;
       }
 
