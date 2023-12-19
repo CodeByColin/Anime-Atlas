@@ -10,7 +10,7 @@ const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
         <div className="flex justify-between items-center py-3">
           <div className="flex items-center space-x-1">
             <img
-              src="/public/logo.png"
+              src="https://anime-atlas-kyeh.onrender.com/logo.png"
               alt="Anime Atlas Logo"
               className="h-12 w-12"
             />
