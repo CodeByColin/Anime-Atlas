@@ -3,6 +3,7 @@ import { useState } from "react";
 const Login = ({ onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false); // State for showing alert
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,8 +23,7 @@ const Login = ({ onClose }) => {
         const data = await response.json();
         console.log("Login successful", data);
         localStorage.setItem("userId", data.user.id);
-
-        onClose();
+        setShowAlert(true); // Show alert on successful login
       } else {
         console.error("Login failed");
       }
@@ -32,8 +32,23 @@ const Login = ({ onClose }) => {
     }
   };
 
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+    onClose();
+  };
+
   return (
     <>
+      {showAlert && (
+        <div className="fixed inset-0 flex items-center justify-center z-30">
+          <div className="bg-dark p-4 text-neon rounded shadow-md">
+            <p>Login successful!</p>
+            <button onClick={handleCloseAlert} className="btn text-neon mt-2">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div
         className="fixed inset-0 bg-black bg-opacity-50 z-10"
         onClick={onClose}
