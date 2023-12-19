@@ -41,7 +41,7 @@ const Signup = ({ onClose }) => {
     <>
       {showAlert && (
         <div className="fixed inset-0 flex items-center justify-center z-30">
-          <div className="bg-white p-4 rounded shadow-md">
+          <div className="bg-dark p-4 rounded text-neon shadow-md">
             <p>Signup successful!</p>
             <button onClick={handleCloseAlert} className="btn text-neon mt-2">
               Close
