@@ -6,18 +6,16 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const { Pool } = pg;
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+const { Pool } = pg;
+const dbString = process.env.DATABASE_URL;
+const PORT = process.env.PORT;
 const pool = new Pool({
-  user: "colin",
-  database: "anime_atlas",
-  host: "localhost",
-  password: "",
-  port: 5432,
+  connectionString: dbString,
 });
 
 // Route for user registration
@@ -121,7 +119,6 @@ app.delete("/api/favorites/:userId/:animeId", async (req, res) => {
   }
 });
 
-const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
