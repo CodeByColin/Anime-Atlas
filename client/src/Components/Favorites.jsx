@@ -17,7 +17,7 @@ const Favorites = () => {
         setLoading(true);
         setError(null);
         const response = await fetch(
-          `http://localhost:3000/api/favorites/${userId}`
+          `https://anime-api-s3cz.onrender.com/api/favorites/${userId}`
         );
         if (!response.ok) throw new Error("Failed to fetch favorites");
 
@@ -46,7 +46,7 @@ const Favorites = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/favorites/${userId}/${animeId}`,
+        `https://anime-api-s3cz.onrender.com/api/favorites/${userId}/${animeId}`,
         { method: "DELETE" }
       );
 

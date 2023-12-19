@@ -16,13 +16,16 @@ const AnimeDetails = ({ anime, hideDetails }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/favorites", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId, animeId }),
-      });
+      const response = await fetch(
+        "https://anime-api-s3cz.onrender.com/api/favorites",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, animeId }),
+        }
+      );
 
       if (response.ok) {
         console.log("Added to favorites successfully");
