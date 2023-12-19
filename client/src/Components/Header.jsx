@@ -1,8 +1,17 @@
 import { useState } from "react";
-const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
+const Header = ({ onShowSignup, onShowLogin, onToggleFavorites, onSearch }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const handleInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    onSearch(searchInput);
+  };
 
   return (
     <header className="w-full bg-dark text-white">
@@ -11,6 +20,7 @@ const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
           <div className="flex items-center space-x-1">
             <h1 className="text-3xl font-bold text-neon">Anime Atlas</h1>
           </div>
+
           <div className="hidden sm:flex items-center space-x-4">
             <button
               className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary"
@@ -24,11 +34,15 @@ const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
             >
               Login
             </button>
-            <input
-              type="search"
-              placeholder="Find an Anime..."
-              className="input input-bordered input-dark w-full max-w-xs"
-            />
+            <form onSubmit={handleSearchSubmit} className="flex">
+              <input
+                type="search"
+                value={searchInput}
+                onChange={handleInputChange}
+                placeholder="Find an Anime..."
+                className="input input-bordered input-dark w-full max-w-xs"
+              />
+            </form>
             <button
               className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-primary"
               onClick={onToggleFavorites}
@@ -56,6 +70,17 @@ const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
                 </li>
                 <li>
                   <a onClick={onShowLogin}>Login</a>
+                </li>
+                <li>
+                  <form onSubmit={handleSearchSubmit} className="flex">
+                    <input
+                      type="search"
+                      value={searchInput}
+                      onChange={handleInputChange}
+                      placeholder="Anime..."
+                      className="input input-bordered input-dark w-full"
+                    />
+                  </form>
                 </li>
                 <li>
                   <a onClick={onToggleFavorites}>Favorites</a>

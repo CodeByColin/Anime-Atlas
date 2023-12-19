@@ -5,6 +5,7 @@ import Favorites from "./Components/Favorites.jsx";
 import AnimeDetails from "./Components/AnimeDetails.jsx";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
+import Search from "./Components/Search.jsx";
 
 const App = () => {
   const [anime, setAnime] = useState([]);
@@ -18,6 +19,8 @@ const App = () => {
   const [showSignup, setShowSignup] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearch, setShowSearch] = useState(false);
 
   const handleShowSignup = () => setShowSignup(true);
   const handleShowLogin = () => setShowLogin(true);
@@ -30,6 +33,15 @@ const App = () => {
 
   const hideDetails = () => {
     setSelectedAnime(null);
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    setShowSearch(true);
+  };
+
+  const resetSearch = () => {
+    setShowSearch(false);
   };
 
   useEffect(() => {
@@ -55,18 +67,19 @@ const App = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-800">
-      {!selectedAnime && (
-        <Header
-          onShowSignup={handleShowSignup}
-          onShowLogin={handleShowLogin}
-          onToggleFavorites={() => setShowFavorites((prev) => !prev)}
-        />
-      )}
-      {showSignup && <Signup onClose={handleCloseSignup} />}
-      {showLogin && <Login onClose={handleCloseLogin} />}
+      <Header
+        onShowSignup={handleShowSignup}
+        onShowLogin={handleShowLogin}
+        onToggleFavorites={() => setShowFavorites((prev) => !prev)}
+        onSearch={handleSearch}
+      />
       <div className="flex-1 overflow-hidden">
-        {selectedAnime ? (
-          <AnimeDetails anime={selectedAnime} hideDetails={hideDetails} />
+        {showSearch ? (
+          <Search
+            query={searchQuery}
+            resetSearch={resetSearch}
+            showDetails={showDetails}
+          />
         ) : showFavorites ? (
           <Favorites />
         ) : (
@@ -87,6 +100,13 @@ const App = () => {
           />
         )}
       </div>
+      {selectedAnime && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+          <AnimeDetails anime={selectedAnime} hideDetails={hideDetails} />
+        </div>
+      )}
+      {showSignup && <Signup onClose={handleCloseSignup} />}
+      {showLogin && <Login onClose={handleCloseLogin} />}
     </div>
   );
 };
