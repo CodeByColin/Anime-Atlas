@@ -1,6 +1,4 @@
 import { useState } from "react";
-import logo from "/Users/colin/MCSP/Anime-Atlas/client/src/public/logo.png";
-
 const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -11,7 +9,11 @@ const Header = ({ onShowSignup, onShowLogin, onToggleFavorites }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3">
           <div className="flex items-center space-x-1">
-            <img src={logo} alt="Anime Atlas Logo" className="h-12 w-12" />
+            <img
+              src="src/public/logo.png"
+              alt="Anime Atlas Logo"
+              className="h-12 w-12"
+            />
             <h1 className="text-3xl font-bold text-neon">Anime Atlas</h1>
           </div>
           <div className="hidden sm:flex items-center space-x-4">
