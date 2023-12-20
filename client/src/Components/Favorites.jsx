@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Favorites = () => {
+const Favorites = ({ showDetails }) => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -77,7 +77,7 @@ const Favorites = () => {
   return (
     <div className="overflow-y-auto py-8">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-neon mb-8">Your Favorites</h2>
+        <h2 className="text-3xl font-bold mb-8">Your Favorites</h2>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap -mx-2">
             {favorites.length > 0 ? (
@@ -95,13 +95,11 @@ const Favorites = () => {
                       src={anime.attributes.posterImage.small}
                       alt={anime.attributes.titles.en}
                       className="w-full h-auto bg-cover bg-center rounded-t-md mb-2"
+                      onClick={() => showDetails(anime)}
                     />
-                    <h3 className="text-md font-medium text-decoration-line: underline leading-6 text-neon">
+                    <h3 className="text-md font-medium text-decoration-line: underline leading-6">
                       {anime.attributes.canonicalTitle}
                     </h3>
-                    <p className="text-sm text-neon">
-                      {anime.attributes.synopsis}
-                    </p>
                   </div>
                 </div>
               ))

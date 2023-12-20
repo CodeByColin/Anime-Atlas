@@ -81,7 +81,7 @@ const App = () => {
             showDetails={showDetails}
           />
         ) : showFavorites ? (
-          <Favorites />
+          <Favorites showDetails={showDetails} />
         ) : (
           <Anime
             anime={anime}
