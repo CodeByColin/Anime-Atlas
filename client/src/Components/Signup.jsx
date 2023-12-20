@@ -3,7 +3,7 @@ import { useState } from "react";
 const Signup = ({ onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showAlert, setShowAlert] = useState(false); // New state for showing alert
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

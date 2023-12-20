@@ -3,7 +3,7 @@ import { useState } from "react";
 const Login = ({ onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showAlert, setShowAlert] = useState(false); // State for showing alert
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const Login = ({ onClose }) => {
         const data = await response.json();
         console.log("Login successful", data);
         localStorage.setItem("userId", data.user.id);
-        setShowAlert(true); // Show alert on successful login
+        setShowAlert(true);
       } else {
         console.error("Login failed");
       }
